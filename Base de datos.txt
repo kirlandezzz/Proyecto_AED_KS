@@ -1,0 +1,97 @@
+-- Check if the database exists and create it if it does not
+IF NOT EXISTS (
+    SELECT [name] FROM master.dbo.sysdatabases WHERE ('[' + [name] + ']' = N'MusicInstruments' OR [name] = N'MusicInstruments')
+)
+BEGIN
+    EXEC('CREATE DATABASE MusicInstruments');
+END
+GO
+
+-- Use the MusicInstruments database
+USE MusicInstruments;
+GO
+
+-- Create the 'string_instruments' table with an availability column
+CREATE TABLE string_instruments (
+    id INT IDENTITY(1,1) PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    description TEXT,
+    price DECIMAL(10, 2),
+    available_in_store BIT NOT NULL DEFAULT 1
+);
+GO
+
+-- Create the 'keyboard_instruments' table with an availability column
+CREATE TABLE keyboard_instruments (
+    id INT IDENTITY(1,1) PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    description TEXT,
+    price DECIMAL(10, 2),
+    available_in_store BIT NOT NULL DEFAULT 1
+);
+GO
+
+-- Create the 'woodwind_instruments' table with an availability column
+CREATE TABLE woodwind_instruments (
+    id INT IDENTITY(1,1) PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    description TEXT,
+    price DECIMAL(10, 2),
+    available_in_store BIT NOT NULL DEFAULT 1
+);
+GO
+
+-- Create the 'percussion_instruments' table with an availability column
+CREATE TABLE percussion_instruments (
+    id INT IDENTITY(1,1) PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    description TEXT,
+    price DECIMAL(10, 2),
+    available_in_store BIT NOT NULL DEFAULT 1
+);
+GO
+
+-- Insert seven string instruments with availability
+INSERT INTO string_instruments (name, description, price, available_in_store) VALUES
+('Guitar', 'A fretted musical instrument that usually has six strings.', 500.00, 1),
+('Violin', 'A small, high-pitched string instrument played with a bow.', 1200.00, 1),
+('Cello', 'A bass string instrument played with a bow.', 1600.00, 0),
+('Double Bass', 'The largest and lowest-pitched bowed string instrument in the modern symphony orchestra.', 2000.00, 1),
+('Harp', 'A stringed musical instrument that has a number of individual strings running at an angle to its soundboard.', 2500.00, 1),
+('Viola', 'An instrument that is larger than the violin and tuned a fifth lower.', 1100.00, 0),
+('Ukulele', 'A small four-stringed guitar of Hawaiian origin.', 300.00, 1);
+GO
+
+-- Insert seven keyboard instruments with availability
+INSERT INTO keyboard_instruments (name, description, price, available_in_store) VALUES
+('Piano', 'A large keyboard musical instrument with a wooden case enclosing a soundboard and metal strings.', 3000.00, 1),
+('Organ', 'A keyboard instrument of one or more pipe divisions or other means for producing tones.', 5000.00, 0),
+('Harpsichord', 'A musical instrument played by means of a keyboard. It produces sound by plucking a string when a key is pressed.', 2500.00, 1),
+('Accordion', 'A portable musical instrument with keys and metal reeds.', 800.00, 1),
+('Synthesizer', 'An electronic instrument designed to produce a wide range of sounds.', 1500.00, 1),
+('Digital Piano', 'An electronic alternative to the acoustic piano.', 1000.00, 0),
+('Mellotron', 'An early keyboard instrument that used tapes to produce sounds.', 1200.00, 1);
+GO
+
+-- Insert seven woodwind instruments with availability
+INSERT INTO woodwind_instruments (name, description, price, available_in_store) VALUES
+('Saxophone', 'A family of woodwind instruments usually made of brass and played with a single-reed mouthpiece.', 2500.00, 1),
+('Clarinet', 'A woodwind instrument with a single-reed mouthpiece, a straight cylindrical tube with an almost cylindrical bore, and a flared bell.', 1500.00, 1),
+('Flute', 'A woodwind instrument made from a tube with holes that are stopped by the fingers or keys, played by blowing across the mouthpiece.', 700.00, 0),
+('Oboe', 'A soprano-ranged, double reed woodwind instrument.', 2200.00, 1),
+('Bassoon', 'A woodwind instrument in the double reed family that typically plays music written in the bass and tenor registers.', 3000.00, 1),
+('Piccolo', 'A small flute sounding an octave higher than the ordinary one.', 900.00, 0),
+('English Horn', 'A double-reed woodwind instrument in the oboe family.', 2600.00, 1);
+GO
+
+-- Insert seven percussion instruments with availability
+INSERT INTO percussion_instruments (name, description, price, available_in_store) VALUES
+('Drums', 'A percussion instrument typically consisting of a hollow body covered at one or both ends with a tight membrane.', 1200.00, 1),
+('Xylophone', 'A musical instrument in the percussion family that consists of wooden bars struck by mallets.', 900.00, 1),
+('Marimba', 'A deep-toned xylophone of African origin.', 2000.00, 1),
+('Conga', 'Tall, narrow, single-headed Cuban drum.', 300.00, 0),
+('Bongo', 'A small drum consisting of a pair of joined hemispherical drums.', 200.00, 1),
+('Timpani', 'A large kettledrum used in orchestras.', 2500.00, 0),
+('Djembe', 'A rope-tuned skin-covered goblet drum played with bare hands, originally from West Africa.', 500.00, 1);
+GO
+
