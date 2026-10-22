@@ -20,8 +20,9 @@ public class conexion {
     public static Connection con;
     // Declaramos los datos de conexion a la bd
     private static final String driver = "com.mysql.jdbc.Driver";
-    private static final String user = "sa";
-    private static final String pass = "@Contraseña1";
+    // Usuario y contraseña: se leen de las variables de entorno DB_USER y DB_PASSWORD
+    private static final String user = System.getenv("DB_USER");
+    private static final String pass = System.getenv("DB_PASSWORD");
     private static final String url = "jdbc:sqlserver://192.168.56.102:1433;databaseName=MusicInstruments;TrustServerCertificate=true";
 
     // Funcion que va conectar a mi bd de mysql

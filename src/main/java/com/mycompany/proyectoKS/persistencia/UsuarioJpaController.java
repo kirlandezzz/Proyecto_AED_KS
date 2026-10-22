@@ -7,7 +7,9 @@ package com.mycompany.proyectoKS.persistencia;
 import com.mycompany.proyectoKS.modelo.Usuario;
 import com.mycompany.proyectoKS.persistencia.exceptions.NonexistentEntityException;
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
@@ -27,7 +29,11 @@ public class UsuarioJpaController implements Serializable {
     }
     
     public UsuarioJpaController() {
-        emf = Persistence.createEntityManagerFactory("UnidadPersistencia");
+        // Usuario y contraseña: se leen de las variables de entorno DB_USER y DB_PASSWORD
+        Map<String, String> credenciales = new HashMap<>();
+        credenciales.put("javax.persistence.jdbc.user", System.getenv("DB_USER"));
+        credenciales.put("javax.persistence.jdbc.password", System.getenv("DB_PASSWORD"));
+        emf = Persistence.createEntityManagerFactory("UnidadPersistencia", credenciales);
     }
     
     private EntityManagerFactory emf = null;

@@ -5,9 +5,7 @@
     <class>com.mycompany.proyectoKS.modelo.Usuario</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:sqlserver://192.168.56.102:1433;databaseName=Tienda_Musical;TrustServerCertificate=true"/>
-      <property name="javax.persistence.jdbc.user" value="sa"/>
       <property name="javax.persistence.jdbc.driver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
-      <property name="javax.persistence.jdbc.password" value="@Contraseña1"/>
       <property name="javax.persistence.schema-generation.database.action" value="create"/>
     </properties>
   </persistence-unit>
